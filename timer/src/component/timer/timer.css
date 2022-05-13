@@ -1,0 +1,22 @@
+.timer {
+  display: flex;
+  justify-content: center;
+  background-color: limegreen;
+  height: 100vh;
+}
+.timer-container {
+  background-color: lightblue;
+  width: 20vw;
+  padding: 1rem 5rem;
+  border-radius: 1rem;
+}
+
+.stop,
+.restart {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  border: none;
+  margin: .5rem .5rem;
+  background-color: lightcoral;
+}

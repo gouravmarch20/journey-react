@@ -1,0 +1,12 @@
+button {
+}
+
+button:active {
+  background-color: blue;
+}
+button:focus {
+  padding: 0.4rem;
+  color: bisque;
+  color: black;
+  box-shadow: 5px 1px #888888;
+}
