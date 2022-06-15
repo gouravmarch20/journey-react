@@ -1,4 +1,4 @@
-// l1 >> read question carefull --> how to mask answer given in question
+
 const maskString = str => {
   concatStr = ''
   for (let i = 0; i < str.length / 2; i++) {

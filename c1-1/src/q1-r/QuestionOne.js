@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 // brands data structure
 const brands1 = [
   { id: '0a', brandName: 'puma' },
+  { id: '0b', brandName: 'adiddas' },
+  { id: '0b', brandName: 'adiddas' },
   { id: '0b', brandName: 'adiddas' },
   { id: '0c', brandName: 'wildcraft' },
   { id: '0d', brandName: 'levis' },
@@ -9,24 +11,22 @@ const brands1 = [
 ]
 
 const QuestionOne = () => {
-  const [input, setInput] = useState('')
-  const [brandItem] = useState(brands1)
-  const [filterItem, setFilterItem] = useState(brands1)
+  // ? EACH OBJECT IS UNIQUE SO if return object can not compare by set 
+  const brandData = [...new Set(brands1.map(brand => brand.brandName))]
 
-  useEffect(() => {
-    const filter = brandItem.filter(item => item.brandName.includes(input))
-    setFilterItem(filter)
-  }, [input])
-
+  const [filterBrand, setFilterBrand] = useState(brandData)
+  const handleBrandSearch = value => {
+    const tempBrandFilter = brandData.filter(brand => brand.includes(value))
+    setFilterBrand(tempBrandFilter)
+  }
   return (
     <>
-      <input type='text' onChange={e => setInput(e.target.value)} />
-
+      <input type='text' onChange={e => handleBrandSearch(e.target.value)} />
       <ul>
-        {filterItem.map(item => {
+        {filterBrand.map((brandName, index) => {
           return (
-            <div>
-              <h6>{item.brandName}</h6>
+            <div key={index}>
+              <h1>{brandName}</h1>
             </div>
           )
         })}

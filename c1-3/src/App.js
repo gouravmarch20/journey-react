@@ -1,11 +1,17 @@
 import React from 'react'
-import Remove from './q2-3/Remove'
+import EmailSuscibe from './q1/EmailSuscibe'
+import Remove from './q2/Remove'
+import RemoveUndo from './q3-R/RemoveUndo'
+import RemoveUndoAll from './q3-extra/RemoveUndoAll'
 
 const App = () => {
   return (
-    <div>
-      <Remove />
-    </div>
+    <>
+      {/* <EmailSuscibe /> */}
+      {/* <Remove /> */}
+      {/* <RemoveUndo /> */}
+      {/* <RemoveUndoAll /> */}
+    </>
   )
 }
 

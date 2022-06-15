@@ -1,12 +1,6 @@
-// && operator in loop --> can replace if block once
+
+// ** in 1 loop , set sai showing unique too , then setX apply on react after 1 loop , function define mai wrap
 const clothingStock = [
-  {
-    id: '0a1',
-    color: 'blue',
-    category: 'men shirt',
-    item: 'Regular Fit Men Shirt',
-    inStock: true
-  },
   {
     id: '0a1',
     color: 'blue',
@@ -64,18 +58,20 @@ const clothingStock = [
     inStock: false
   }
 ]
-clothingStock.forEach(
-  item => item.category === 'men shirt' && console.log(item.color)
-)
-console.log('--------solution 2-------------')
-clothingStock.forEach(
-  item =>
-    item.category === 'men shirt' &&
-    item.inStock === true &&
-    console.log(item.color)
-)
-
-console.log('--------solution 3-------------')
-
-const inStockData = clothingStock.filter(item => item.inStock === true)
-// console.log(inStockData)
+let arr = []
+let arr1 = []
+let arr2 = []
+const data1 = clothingStock.forEach(item => {
+  if (item.category === 'men shirt') {
+    arr.push(item.color)
+  }
+  if (item.category === 'men shirt' && item.inStock) {
+    arr1.push(item.color)
+  }
+  if (item.inStock) {
+    arr2.push(item)
+  }
+})
+console.log([...new Set(arr)])
+console.log([...new Set(arr1)])
+// console.log(arr2)

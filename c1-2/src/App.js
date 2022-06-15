@@ -1,11 +1,15 @@
 import React from 'react'
-import QuestionOne from './q2/QuestionOne'
-import ToglerTodo from './q3/ToglerTodo'
+import Message from './q1/Message'
+import Car from './q2/Car'
+import CarR from './r-2/CarR'
+import ToglerTodo from './q3-R/ToglerTodo'
 import './App.css'
 const App = () => {
   return (
     <div>
-      {/* <QuestionOne /> */}
+      {/* <Message /> */}
+      {/* <Car /> */}
+      {/* <CarR /> */}
       <ToglerTodo />
     </div>
   )

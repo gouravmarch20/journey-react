@@ -1,10 +1,11 @@
 import React from 'react'
-import QuestionOne from './q1/QuestionOne'
+import StringReverse from './q1/StringReverse'
+import ReducerCase from './q2/ReducerCase'
 const App = () => {
   return (
     <div>
-      {/* <QuestionOne /> */}
-    
+      {/* <StringReverse /> */}
+      {/* <ReducerCase /> */}
     </div>
   )
 }
