@@ -1,0 +1,17 @@
+.d-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.d-flex-row {
+  display: flex;
+}
+.home-filterProduct {
+  min-width: 25vmax;
+  background-color: black;
+  height: 100vh;
+}
+.home-productList {
+  /* background-color: yellow; */
+  width: 75vmax;
+  /* height: 100vmax; */
+}

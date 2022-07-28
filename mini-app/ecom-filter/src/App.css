@@ -1,0 +1,17 @@
+* {
+  /* margin: 0; */
+}
+.app {
+  background-color: #242b2e;
+  color: white;
+  min-height: 100vh;
+}
+
+label {
+  display: block;
+}
+.img-responsive {
+  object-fit: contain;
+  width: 27vmax;
+  height: 25vh;
+}
