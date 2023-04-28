@@ -1,0 +1,1 @@
+export {useFetchHook} from './useFetch'
