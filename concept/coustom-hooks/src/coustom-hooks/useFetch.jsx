@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 
 export const useFetchHook = (url) => {
   const [products, setProduct] = useState();
@@ -8,7 +8,6 @@ export const useFetchHook = (url) => {
   useEffect(() => {
     setLoading(true);
     fetchApi(url);
-    console.log("14");
   }, [url]);
   const fetchApi = (url) => {
     fetch(url)
@@ -24,7 +23,6 @@ export const useFetchHook = (url) => {
         setProduct([]);
       });
   };
-  console.log("15");
 
   return { products, loading, err };
 };

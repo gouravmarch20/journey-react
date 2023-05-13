@@ -1,9 +1,11 @@
 import React from 'react'
-
+import { H1Page } from './pages'
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <H1Page />
+    </div>
   )
 }
- 
+
 export default App
