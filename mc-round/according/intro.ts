@@ -1,0 +1,1 @@
+// ? tell of each component has own state , props of --> card 
