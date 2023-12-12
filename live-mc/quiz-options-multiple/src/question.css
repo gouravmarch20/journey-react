@@ -1,0 +1,14 @@
+.box {
+ 
+  background: linear-gradient(45deg,red,blue) border-box; /*3*/
+
+ 
+
+}
+.box-1{
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+
+}
