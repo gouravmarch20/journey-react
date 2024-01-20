@@ -1,0 +1,30 @@
+.my_card_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.my_card {
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  transition: all 0.3s;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  margin: 1rem;
+  width: 100%;
+}
+@media only screen and (min-width: 750) {
+  .my_card {
+    width: 29%;
+  }
+}
+@media only screen and (min-width: 1205px) {
+  .my_card {
+    width: 21.5%;
+  }
+}
+
+@media only screen and (min-width: 1685px) {
+  .my_card {
+    width: 23%;
+  }
+}

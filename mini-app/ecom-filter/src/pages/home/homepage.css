@@ -6,12 +6,15 @@
   display: flex;
 }
 .home-filterProduct {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 25vmax;
   background-color: black;
   height: 100vh;
 }
 .home-productList {
-  /* background-color: yellow; */
   width: 75vmax;
-  /* height: 100vmax; */
+  margin-left: 25vw;
 }

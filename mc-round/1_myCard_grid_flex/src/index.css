@@ -1,0 +1,29 @@
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+font-family: -apple-system, "system-ui", "Segoe UI", "PingFang SC",
+  "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial,
+  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.no_data_msg{
+  color: #ccc;
+  margin: 0;
+  font: 2rem verdana;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  padding-top: 2rem;
+  text-align: center;
+}
