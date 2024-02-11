@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"
-//TODO: HOW    RE_INIT not happening useRef
+
 //& useRef ==> in jsx --> no render so it persist it's value , the function run
 export const useEffectPolyfill = (effect, deps) => {
   const isFirstRender = useRef(true)//? how avoid always true

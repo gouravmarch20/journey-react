@@ -1,13 +1,12 @@
-export { A1Use } from "./useMemo/A1/A1Use";
-export { A2Use } from "./useMemo/A2/A2Use";
+export { A1Use } from "./useMemo/memoVseffect/A1Use";
+export {DemoMemo  } from "./useMemo/demo/DemoMemo";
 
 // use ref 
-export { A1UseRefUse } from "./useRef/A1/A1UseRefUse";
-export { A1UseRefNeed } from "./useRef/A1/A1UseRefNeed";
-export { A2UseRefUse } from "./useRef/A2/A2UseRefUse";
-export { NeedMemo } from "./useRef/demo/NeedMemo";
-export { FixUsingMemo } from "./useRef/demo/FixUsingMemo";
+
+
+
+
+export { DomInput } from "./useRef/A2/DomInput";
 // callbacks
-export { UseCallbackA1Need } from "./useCallback/A1/UseCallbackA1Need";
-export { UseCallbackA1Use } from "./useCallback/A1/UseCallbackA1Use";
-export { NeedCallback } from "./useCallback/demo/NeedCallback";
+export { UseCallbackA1Need } from "./useCallback/need/UseCallbackA1Need";
+export { DemoCallback } from "./useCallback/demo/DemoCallback";

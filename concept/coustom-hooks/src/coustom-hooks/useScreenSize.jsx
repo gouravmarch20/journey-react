@@ -1,32 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
 export const useScreenSize = () => {
-  const [screenSize, setScreenSize] = useState();
+  const [screenSize, setScreenSize] = useState()
+  //? run first time only
   useEffect(() => {
-   console.log("use effect running");
-   
-    checkScreenSize();// run first time only 
-    window.addEventListener("resize", checkScreenSize);//! async event trigger when resize it run   
+    checkScreenSize()
+    window.addEventListener("resize", checkScreenSize) //? event in browser -> track resize event if occur run function
     return () => {
-      window.removeEventListener("resize", checkScreenSize);// each resize run so clean up 
-    };
-  }, []);
+      //* -> if component unmount --
+      window.removeEventListener("resize", checkScreenSize)
+    }
+  }, [])
   const checkScreenSize = () => {
-    // console.log("running by event listener");
-
     if (window.innerWidth > 1024) {
-      return setScreenSize("xlg");
+      return setScreenSize("xlg")
     }
     if (window.innerWidth > 992) {
-      return setScreenSize("large");
+      return setScreenSize("large")
     }
     if (window.innerWidth < 992 && window.innerWidth > 600) {
-      return setScreenSize("medium");
+      return setScreenSize("medium")
     }
     if (window.innerWidth < 600) {
-      return setScreenSize("small");
+      return setScreenSize("small")
     }
-  };
+  }
 
-  return screenSize;
-};
+  return screenSize
+}

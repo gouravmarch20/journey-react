@@ -1,47 +1,45 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react"
 import {
-  ApiFetch,
-  Default,
-  // A2Use,
-  UseCallbackA1Need,
+  DemoMemo,
+  A1Use,
   UseCallbackA1Use,
-  A1UseRefUse,
-  A1UseRefNeed,
-  A2UseRefUse,
+  DomInput,
   MemoDemo,
   FixUsingMemo,
-  NeedCallback,
-} from './hooks'
-import { ReactMemoSucess } from './reactMemo/Sucess/ReactMemoSucess'
-import { FailedReactMemo } from './reactMemo/Failed/FailedReactMemo'
-import './App.css'
+  DemoCallback,
+} from "./hooks"
+// import { ReactMemoSuccess } from './reactMemo/demo/ReactMemoSuccess'
+// import { ReactMemoDeep } from './reactMemo/reference/ReactMemoDeep'
+import "./App.css"
 
 const App = () => {
   useEffect(() => {}, [])
 
   return (
     <div>
-      {/* use Memo */}
-      {/* <A2Use /> */}
-      {/* Coustom hook : Api hit */}
-      {/* <h1>APi fetch </h1>
-      <ApiFetch /> */}
-      {/* use Callback */}
-      {/* <UseCallbackA1Need />
-      <UseCallbackA1Use /> */}
-      {/* <UseCallbackA1Need /> */}
+      {/* useRef  */}
 
-      {/* useref  */}
-      {/* <A1UseRefNeed /> */}
-      {/* <A1UseRefUse /> */}
-      {/* <A2UseRefUse /> */}
-      {/* <MemoDemo /> */}
-      {/* <FixUsingMemo /> */}
-      <NeedCallback />
-      {/*  */}
+
+      <DomInput />
+
+
+
+
+
+
+      {/* use Memo */}
+      {/* <A1Use />
+      <DemoMemo /> */}
+
+      {/* use Callback */}
+
+      {/* <UseCallbackA1Use /> */}
+      {/* <DemoCallback/> */}
+
       {/* *** REACT MEMO */}
-      {/* <ReactMemoSucess /> */}
-      {/* <FailedReactMemo /> */}
+      {/* <ReactMemoSuccess /> */}
+      {/* <ReactMemoDeep /> */}
+
     </div>
   )
 }

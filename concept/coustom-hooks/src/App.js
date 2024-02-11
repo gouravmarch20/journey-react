@@ -1,12 +1,17 @@
-import React from 'react'
-import { ApiFetch, Counter, ScreenSize,CounterUseEffectPolyfill } from './hooks'
+import React from "react"
+import {
+  ApiFetch,
+  Counter,
+  ScreenSize,
+  CounterUseEffectPolyfill,
+} from "./hooks"
 const App = () => {
   return (
     <div>
       {/* <ApiFetch /> */}
       {/* <Counter /> */}
-      {/* <ScreenSize /> */}
-    <CounterUseEffectPolyfill/>
+      <ScreenSize />
+      {/* <CounterUseEffectPolyfill /> */}
     </div>
   )
 }
