@@ -1,57 +1,70 @@
 "use client";
+
 import React, { useState } from "react";
-import Toast from "./Toast";
-import { ToastT } from "./toastInterface";
+import "./toast.css";
 
-const ToastContainer = () => {
-  const [toasts, setToasts] = useState<ToastT[]>([]);
+type ToastType = "success" | "error" | "info" | "warning";
 
-  const addToast = (message: string, type: "success" | "error" | "info") => {
-    const id = Math.random().toString(36).substring(2, 9);
-    setToasts((prev) => [...prev, { id, message, type }]);
+interface Toast {
+  key: number;
+  type: ToastType;
+  message: string;
+}
 
-    setTimeout(() => {
-      removeToast(id);
-    }, 5000);
+interface Props {
+  position?: "top-right" | "top-left" | "bottom-right" | "bottom-left";
+  stackDirection?: "up" | "down";
+}
+
+const ToastManager: React.FC<Props> = ({
+  position = "top-right",
+  stackDirection = "down",
+}) => {
+  const [toasts, setToasts] = useState<Toast[]>([]);
+
+  const showToast = (type: ToastType, message: string) => {
+    const key = Date.now();
+    const newToast: Toast = { key, type, message };
+
+    setToasts((prev) =>
+      stackDirection === "up" ? [newToast, ...prev] : [...prev, newToast]
+    );
+
+    setTimeout(() => removeToast(key), 4000);
   };
 
-  const removeToast = (id: string) => {
-    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  const removeToast = (key: number) => {
+    setToasts((prev) => prev.filter((toast) => toast.key !== key));
   };
 
   return (
-    <div className="fixed top-5 right-5 flex flex-col gap-3 z-50">
-      {toasts.map((toast) => (
-        <Toast
-          key={toast.id}
-          message={toast.message}
-          type={toast.type}
-          onClose={() => removeToast(toast.id)}
-        />
-      ))}
+    <div className="toast-wrapper">
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <button onClick={() => showToast("success", "Success!")}>
+          Success
+        </button>
+        <button onClick={() => showToast("error", "Error!")}>Error</button>
+        <button onClick={() => showToast("info", "Info!")}>Info</button>
+        <button onClick={() => showToast("warning", "Warning!")}>
+          Warning
+        </button>
+      </div>
 
-      <div className="fixed bottom-5 left-5 flex gap-3">
-        <button
-          className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-          onClick={() => addToast("Success Message", "success")}
-        >
-          Show Success
-        </button>
-        <button
-          className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-          onClick={() => addToast("Error Message", "error")}
-        >
-          Show Error
-        </button>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-          onClick={() => addToast("Info Message", "info")}
-        >
-          Show Info
-        </button>
+      <div className={`toast-container ${position}`}>
+        {toasts.map((toast) => (
+          <div key={toast.key} className={`toast ${toast.type}`}>
+            {toast.message}
+            <button
+              className="close-btn"
+              onClick={() => removeToast(toast.key)}
+            >
+              ×
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default ToastContainer;
+export default ToastManager;
