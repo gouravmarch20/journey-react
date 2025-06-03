@@ -7,15 +7,18 @@ import Test1 from "./FiteFolder";
 import TermsAndConditionsAccordion from "./TermsAndConditionsAccordion";
 import TreeBoard from "./TreeBoard";   
 import TraficLight from "./TraficLight";   
+import MutationObserver from './MutationObserver'
 
 
 const Test = () => {
   return (
-    <div>
+    <div className="mt-4">
+      
       Test
       {/* <TermsAndConditionsAccordion /> */}
       {/* <TreeBoard/> */}
-      <TraficLight/>
+      {/* <TraficLight/> */}
+      <MutationObserver/>
     </div>
   );
 };
