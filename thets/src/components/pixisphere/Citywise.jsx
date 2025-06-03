@@ -1,73 +1,71 @@
-// app/pixisphere/page.jsx
 "use client";
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useMemo } from "react";
 import PhotographerFilter from "./components/PhotographerFilter";
 import PhotographerCard from "./components/PhotographerCard";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Breadcrumbs from "./components/Breadcrumbs";
 
 const Pixisphere = () => {
   const router = useRouter();
-
   const searchParams = useSearchParams();
   const queryLocation = searchParams.get("location");
 
-  const [allPhotographers, setAllPhotographers] = useState([]);
+  const [photographers, setPhotographers] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      console.log("queryLocation", queryLocation);
-      const res = await fetch("/api/photographers");
+    const fetchPhotographers = async () => {
+      try {
+        const res = await fetch("/api/photographers");
+        const data = await res.json();
+        setPhotographers(data);
 
-      const data = await res.json();
+        const filtered = queryLocation
+          ? data.filter((p) => p.location === queryLocation)
+          : data;
 
-      setAllPhotographers(data);
-      let filterData = data;
-      if (queryLocation) {
-        filterData = data?.filter((d) => d.location == queryLocation);
+        setFiltered(filtered);
+
+        const params = new URLSearchParams(searchParams.toString());
+        params.delete("location");
+        router.replace(`${window.location.pathname}?${params}`, {
+          scroll: false,
+        });
+      } catch (err) {
+        console.error("Failed to fetch photographers:", err);
+      } finally {
+        setLoading(false);
       }
-      setFiltered(filterData);
-
-      const params = new URLSearchParams(searchParams.toString());
-      params.delete("location");
-      router.replace(`${window.location.pathname}?${params.toString()}`, {
-        scroll: false,
-      });
     };
 
-    fetchData();
+    fetchPhotographers();
   }, []);
 
-  const handleFilterChange = ({
-    selectedCity,
-    selectedRating,
-    selectedStyle,
-    priceRange,
-    sortOption,
-  }) => {
-    console.log(
-      "onFilterChange",
+  const handleFilterChange = (filters) => {
+    let updated = [...photographers];
+
+    const {
       selectedCity,
       selectedRating,
       selectedStyle,
       priceRange,
-      sortOption
-    );
-    let updated = [...allPhotographers];
+      sortOption,
+      searchKeyword,
+    } = filters;
 
-    if (selectedCity) {
+    if (selectedCity)
       updated = updated.filter((p) => p.location === selectedCity);
-    }
-
-    if (selectedRating) {
+    if (selectedRating)
       updated = updated.filter((p) => p.rating >= selectedRating);
-    }
-
-    if (selectedStyle.length > 0) {
+    if (selectedStyle.length) {
       updated = updated.filter((p) =>
-        selectedStyle.some((s) => p.styles.includes(s))
+        selectedStyle.some((style) => p.styles.includes(style))
+      );
+    }
+    if (searchKeyword) {
+      updated = updated.filter((p) =>
+        p.name.toLowerCase().includes(searchKeyword.toLowerCase())
       );
     }
 
@@ -75,43 +73,60 @@ const Pixisphere = () => {
       (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
     );
 
-    if (sortOption === "priceLowHigh") {
-      updated.sort((a, b) => a.price - b.price);
-    } else if (sortOption === "priceHighLow") {
-      updated.sort((a, b) => b.price - a.price);
-    } else if (sortOption === "ratingHighLow") {
-      updated.sort((a, b) => b.rating - a.rating);
-    } else if (sortOption === "recent") {
-      updated.sort((a, b) => b.id - a.id); // assuming higher ID = recent
+    switch (sortOption) {
+      case "priceLowHigh":
+        updated.sort((a, b) => a.price - b.price);
+        break;
+      case "priceHighLow":
+        updated.sort((a, b) => b.price - a.price);
+        break;
+      case "ratingHighLow":
+        updated.sort((a, b) => b.rating - a.rating);
+        break;
+      case "recent":
+        updated.sort((a, b) => b.id - a.id);
+        break;
     }
 
     setFiltered(updated);
   };
+
   const handleViewProfile = (profile) => {
-    console.log("profile", profile);
     router.push(`/pixisphere/profile/${profile.id}`);
   };
-  return (
-    <div>
-      <Breadcrumbs />
 
-      <div className="md:flex p-4 gap-6">
-        <div className="md:w-1/4">
-          <PhotographerFilter onFilterChange={handleFilterChange} />
+  return (
+    <div className="min-h-screen p-6  ">
+      <Breadcrumbs />
+      <div className="flex flex-col lg:flex-row gap-6">
+        {" "}
+        <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
+          {" "}
+          <PhotographerFilter
+            onFilterChange={handleFilterChange}
+            photographers={photographers}
+          />
         </div>
-        <div className="md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.length > 0 ? (
-            filtered.map((p) => (
-              <PhotographerCard
-                key={p.id}
-                photographer={p}
-                handleViewProfile={handleViewProfile}
-              />
-            ))
+        <div className="w-full lg:w-3/4">
+          {" "}
+          {loading ? (
+            <div className="text-center text-gray-500 py-12">
+              Loading photographers...
+            </div>
+          ) : filtered.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((photographer) => (
+                <PhotographerCard
+                  key={photographer.id}
+                  photographer={photographer}
+                  handleViewProfile={handleViewProfile}
+                />
+              ))}
+            </div>
           ) : (
-            <p className="text-center col-span-full text-gray-500">
-              No results found.
-            </p>
+            <div className="text-center text-gray-500 py-12">
+              No photographers match your criteria.
+            </div>
           )}
         </div>
       </div>

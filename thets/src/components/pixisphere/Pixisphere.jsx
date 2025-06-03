@@ -20,7 +20,7 @@ const Pixisphere = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen p-6 w-[80%] flex flex-col mx-auto ">
       <Breadcrumbs />
       <div className="max-w-6xl mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">Select a City</h2>

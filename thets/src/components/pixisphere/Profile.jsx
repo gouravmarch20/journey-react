@@ -31,7 +31,7 @@ const ProfilePage = () => {
   if (!photographer) return <p className="p-4">No data available.</p>;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 w-[80%] flex flex-col mx-auto gap-2">
       {/* Profile Header */}
       <Breadcrumbs/>
       <div className="flex gap-6 items-center">
